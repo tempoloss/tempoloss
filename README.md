@@ -1,11 +1,6 @@
-<h1 align="center">tempoloss</h1>
-
 <p align="center">
-  <i>in chess, a move that accomplishes nothing.</i><br/>
-  <i>2500+ elo and i still play them, so it felt like the honest option.</i>
+  <img src="banner.png" width="840" alt="tempoloss — in chess, a move that accomplishes nothing. 2500+ elo and i still play them.">
 </p>
-
----
 
 backend engineer in astana. fullstack at the **agency of financial monitoring** —
 crm built from scratch, a clickhouse to postgres migration that took page loads
