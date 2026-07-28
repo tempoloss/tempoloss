@@ -25,28 +25,15 @@
 
 ### stack
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-04070c?style=flat-square&logo=python&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Go-04070c?style=flat-square&logo=go&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/TypeScript-04070c?style=flat-square&logo=typescript&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/FastAPI-04070c?style=flat-square&logo=fastapi&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/SQLAlchemy-04070c?style=flat-square&logo=sqlalchemy&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Pydantic-04070c?style=flat-square&logo=pydantic&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/React-04070c?style=flat-square&logo=react&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Next.js-04070c?style=flat-square&logo=nextdotjs&logoColor=8ec5ff">
-  <br/>
-  <img src="https://img.shields.io/badge/PostgreSQL-04070c?style=flat-square&logo=postgresql&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/ClickHouse-04070c?style=flat-square&logo=clickhouse&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Redis-04070c?style=flat-square&logo=redis&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/NATS-04070c?style=flat-square&logo=natsdotio&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Docker-04070c?style=flat-square&logo=docker&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Kubernetes-04070c?style=flat-square&logo=kubernetes&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Nginx-04070c?style=flat-square&logo=nginx&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Linux-04070c?style=flat-square&logo=linux&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Actions-04070c?style=flat-square&logo=githubactions&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Grafana-04070c?style=flat-square&logo=grafana&logoColor=8ec5ff">
-  <img src="https://img.shields.io/badge/Cloudflare-04070c?style=flat-square&logo=cloudflare&logoColor=8ec5ff">
-</p>
+**languages** &nbsp; `python` · `go` · `typescript` · `sql`
+
+**backend** &nbsp; fastapi · litestar · sqlalchemy · pydantic · dishka · aiogram
+
+**data** &nbsp; postgresql · clickhouse · redis · nats · minio / s3
+
+**infra** &nbsp; docker · kubernetes · nginx · linux · github actions · cloudflare · grafana
+
+**frontend** &nbsp; react · next.js · flutter
 
 ---
 
