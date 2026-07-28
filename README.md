@@ -1,38 +1,41 @@
-Backend engineer in Astana. Python and Go, mostly the parts where being almost
-right is the same as being wrong — locks, queues, query plans, auth flows.
+Backend engineer in Astana. Python and Go.
 
-Currently building financial-intelligence tooling: entity resolution across
-mismatched registries, analytical workloads that have to answer in under a
-second, document pipelines behind an air gap.
+I keep ending up on the parts that break quietly: locks, queues, query plans,
+auth flows. Right now that means financial-intelligence tooling — matching
+entities across registries that disagree with each other, getting analytical
+queries under a second, generating documents inside an air-gapped network.
 
-2500+ ELO at chess, which turns out to be the same habit as debugging — assume
-the position is worse than it looks, then check.
+2500+ ELO at chess. Same reflex as debugging, apparently.
+
+### Things here
+
+[**moxy**](https://github.com/tempoloss/moxy) · Go
+
+Leases and ACKs for Redis queues, so a task doesn't vanish when the worker
+dies. Writes a journal before every lease change and replays it on boot, which
+means a restart no longer strands whatever was in flight.
+
+[**search-gateway**](https://github.com/tempoloss/search-gateway) · Python
+
+Sits in front of five search APIs and fails over between them. Works out whose
+fault a failure was before deciding to retry. Retrying a malformed query across
+every credential you own just burns all of them to answer a 400.
+
+[**chessview**](https://github.com/tempoloss/chessview) · Python, React
+
+Realtime chess. The server owns the board and clients don't get a vote. Clocks
+pause on disconnect, Stockfish runs in your browser.
+
+[**db-seed**](https://github.com/tempoloss/db-seed) · Go
+
+Fills a database in the right order by reading the schema and sorting it.
+Same order every run, which matters more than it sounds.
+
+[**mentor-skill**](https://github.com/tempoloss/mentor-skill) · agent skill
+
+Won't let me merge code I can't explain. Makes me say it back first, and
+remembers what I got wrong. Written after noticing I couldn't.
 
 ---
 
-**[moxy](https://github.com/tempoloss/moxy)** · Go
-Leases, ACKs and visibility timeouts on top of Redis-style queues, so a task
-does not vanish when a worker dies. Lease state is journalled write-ahead and
-replayed on boot; a torn final record is truncated rather than trusted.
-
-**[search-gateway](https://github.com/tempoloss/search-gateway)** · Python
-High-availability middleware over five search providers. Failures are blamed on
-the key, the provider or the caller before any retry is chosen — retrying a
-malformed query across every credential burns the pool to answer a 400.
-
-**[chessview](https://github.com/tempoloss/chessview)** · Python · React
-Realtime chess with server-owned state: the board never trusts the client,
-clocks pause on disconnect, engine analysis runs in the browser.
-
-**[db-seed](https://github.com/tempoloss/db-seed)** · Go
-Seeds a database in dependency order by reading the schema and topologically
-sorting it. Cycles are broken through nullable foreign keys, and the ordering is
-deterministic between runs.
-
-**[mentor-skill](https://github.com/tempoloss/mentor-skill)** · agent skill
-Refuses to let you ship code you cannot explain. Explains it, then stops and
-makes you restate it, and keeps a ledger of what you actually understood.
-
----
-
-Reachable at [t.me/tempoloss](https://t.me/tempoloss).
+[t.me/tempoloss](https://t.me/tempoloss)
