@@ -39,22 +39,30 @@
 
 ### things that exist because something broke
 
-| | |
-|:--|:--|
-| **[moxy](https://github.com/tempoloss/moxy)** · go, redis<br/><a href="https://github.com/tempoloss/moxy/actions/workflows/go.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/moxy/go.yml?style=flat-square&label=ci&labelColor=04070c"></a> <a href="https://github.com/tempoloss/moxy/releases"><img src="https://img.shields.io/github/v/release/tempoloss/moxy?include_prereleases&style=flat-square&label=release&labelColor=04070c&color=8ec5ff"></a> | redis queues drop your task when a worker dies and never mention it. leases, acks, and a write-ahead journal, so a restart doesn't quietly strand whatever was in flight |
-| **[search-gateway](https://github.com/tempoloss/search-gateway)** · python, fastapi<br/><a href="https://github.com/tempoloss/search-gateway/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/search-gateway/ci.yml?style=flat-square&label=ci&labelColor=04070c"></a> <a href="https://github.com/tempoloss/search-gateway/pkgs/container/search-gateway"><img src="https://img.shields.io/badge/ghcr-published-8ec5ff?style=flat-square&logo=docker&logoColor=8ec5ff&labelColor=04070c"></a> | five search apis, at least one of them is always down. works out whose fault a failure was before retrying, because retrying a bad query across every key you own burns all of them to answer a 400 |
-| **[chessview](https://github.com/tempoloss/chessview)** · python, react<br/><a href="https://github.com/tempoloss/chessview/actions/workflows/pr-ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/chessview/pr-ci.yml?style=flat-square&label=ci&labelColor=04070c"></a> <img src="https://img.shields.io/badge/ghcr-3%20images-8ec5ff?style=flat-square&logo=docker&logoColor=8ec5ff&labelColor=04070c"> | realtime chess where the client doesn't get a vote. the server owns the board, clocks pause on disconnect, stockfish runs in your browser |
-| **[db-seed](https://github.com/tempoloss/db-seed)** · go<br/><a href="https://github.com/tempoloss/db-seed/actions/workflows/go.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/db-seed/go.yml?style=flat-square&label=ci&labelColor=04070c"></a> <a href="https://github.com/tempoloss/db-seed/releases"><img src="https://img.shields.io/github/v/release/tempoloss/db-seed?style=flat-square&label=release&labelColor=04070c&color=8ec5ff"></a> | reads a schema, sorts it, fills the database in an order that doesn't trip over its own foreign keys. same order every run |
-| **[mentor-skill](https://github.com/tempoloss/mentor-skill)** · agent skill<br/><a href="https://github.com/tempoloss/mentor-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/mentor-skill/ci.yml?style=flat-square&label=ci&labelColor=04070c"></a> | i was shipping code i couldn't explain. this one makes me say it back before it lets me merge, and remembers what i got wrong |
+<p align="center">
+  <a href="https://github.com/tempoloss/moxy/actions/workflows/go.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/moxy/go.yml?style=flat-square&label=moxy&labelColor=04070c"></a>
+  <a href="https://github.com/tempoloss/search-gateway/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/search-gateway/ci.yml?style=flat-square&label=search-gateway&labelColor=04070c"></a>
+  <a href="https://github.com/tempoloss/chessview/actions/workflows/pr-ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/chessview/pr-ci.yml?style=flat-square&label=chessview&labelColor=04070c"></a>
+  <a href="https://github.com/tempoloss/db-seed/actions/workflows/go.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/db-seed/go.yml?style=flat-square&label=db-seed&labelColor=04070c"></a>
+  <a href="https://github.com/tempoloss/mentor-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/mentor-skill/ci.yml?style=flat-square&label=mentor-skill&labelColor=04070c"></a>
+  <a href="https://github.com/tempoloss/terminal-setup/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/tempoloss/terminal-setup/ci.yml?style=flat-square&label=terminal-setup&labelColor=04070c"></a>
+</p>
+
+| repo | stack | why it exists |
+|:--|:--|:--|
+| **[moxy](https://github.com/tempoloss/moxy)** | go · redis | redis queues drop your task when a worker dies and never mention it. leases, acks and a write-ahead journal, so a restart doesn't quietly strand whatever was in flight |
+| **[search-gateway](https://github.com/tempoloss/search-gateway)** | python · fastapi | five search apis, at least one of them is always down. works out whose fault a failure was before retrying, because retrying a bad query across every key you own burns all of them to answer a 400 |
+| **[chessview](https://github.com/tempoloss/chessview)** | python · react | realtime chess where the client doesn't get a vote. the server owns the board, clocks pause on disconnect, stockfish runs in your browser |
+| **[db-seed](https://github.com/tempoloss/db-seed)** | go | reads a schema, sorts it, fills the database in an order that doesn't trip over its own foreign keys. same order every run |
+| **[mentor-skill](https://github.com/tempoloss/mentor-skill)** | agent skill | i was shipping code i couldn't explain. this one makes me say it back before it lets me merge, and remembers what i got wrong |
+| **[terminal-setup](https://github.com/tempoloss/terminal-setup)** | powershell | windows terminal, one script, for when a machine is new and beige |
 
 <details>
-<summary>&nbsp;smaller things, and what "ci" actually means up there</summary>
+<summary>&nbsp;what those green badges actually run</summary>
 
 <br/>
 
-- **[terminal-setup](https://github.com/tempoloss/terminal-setup)** — windows terminal + powershell + oh my posh, one script. for when a machine is new and beige
-
-every badge above is a pipeline that runs something real, not a linter waving at you:
+every one of them is a pipeline that does something, not a linter waving at you:
 
 - **moxy** runs the race detector and the redis-backed suite against a live server. the lua scripts that move tasks between ready, processing and dead used to ship having never once been executed
 - **search-gateway** brings up redis in ci too. twelve tests covering key rotation and the cache were quietly skipping before that
@@ -62,7 +70,7 @@ every badge above is a pipeline that runs something real, not a linter waving at
 - **chessview** builds all three docker images the compose stack needs. it broke for a while on a node version mismatch nobody noticed, since the images were two majors behind the ci jobs
 - **terminal-setup** parses the powershell without executing it, for reasons that should be obvious
 
-releases are cross-compiled for linux, macos and windows with checksums; the services publish multi-arch images to ghcr.
+downloads: [moxy](https://github.com/tempoloss/moxy/releases) and [db-seed](https://github.com/tempoloss/db-seed/releases) ship binaries for linux, macos and windows with checksums. search-gateway and chessview publish multi-arch images to ghcr.
 
 </details>
 
