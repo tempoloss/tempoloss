@@ -1,41 +1,19 @@
-Backend engineer in Astana. Python and Go.
+**tempoloss** — in chess, a move that accomplishes nothing. 2500+ elo and i
+still play them, so it felt like the honest option.
 
-I keep ending up on the parts that break quietly: locks, queues, query plans,
-auth flows. Right now that means financial-intelligence tooling — matching
-entities across registries that disagree with each other, getting analytical
-queries under a second, generating documents inside an air-gapped network.
+backend engineer in astana, python and go. i end up on the parts that fail
+quietly: locks, queues, query plans, auth. everything here exists because
+something broke without saying anything and i took it personally.
 
-2500+ ELO at chess. Same reflex as debugging, apparently.
+| project | why it exists |
+|:--|:--|
+| [**moxy**](https://github.com/tempoloss/moxy) | redis queues drop your task when a worker dies and never mention it |
+| [**search-gateway**](https://github.com/tempoloss/search-gateway) | five search apis, at least one of them is always down |
+| [**chessview**](https://github.com/tempoloss/chessview) | realtime chess where the client doesn't get a vote |
+| [**db-seed**](https://github.com/tempoloss/db-seed) | seeding a database in an order that actually works |
+| [**mentor-skill**](https://github.com/tempoloss/mentor-skill) | i was shipping code i couldn't explain |
 
-### Things here
-
-[**moxy**](https://github.com/tempoloss/moxy) · Go
-
-Leases and ACKs for Redis queues, so a task doesn't vanish when the worker
-dies. Writes a journal before every lease change and replays it on boot, which
-means a restart no longer strands whatever was in flight.
-
-[**search-gateway**](https://github.com/tempoloss/search-gateway) · Python
-
-Sits in front of five search APIs and fails over between them. Works out whose
-fault a failure was before deciding to retry. Retrying a malformed query across
-every credential you own just burns all of them to answer a 400.
-
-[**chessview**](https://github.com/tempoloss/chessview) · Python, React
-
-Realtime chess. The server owns the board and clients don't get a vote. Clocks
-pause on disconnect, Stockfish runs in your browser.
-
-[**db-seed**](https://github.com/tempoloss/db-seed) · Go
-
-Fills a database in the right order by reading the schema and sorting it.
-Same order every run, which matters more than it sounds.
-
-[**mentor-skill**](https://github.com/tempoloss/mentor-skill) · agent skill
-
-Won't let me merge code I can't explain. Makes me say it back first, and
-remembers what I got wrong. Written after noticing I couldn't.
-
----
+also [some dotfiles](https://github.com/tempoloss/terminal-setup), if you want
+a windows terminal that isn't beige.
 
 [t.me/tempoloss](https://t.me/tempoloss)
