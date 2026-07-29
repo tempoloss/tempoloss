@@ -7,22 +7,30 @@ backend engineer in astana. mostly python and go — fastapi, litestar,
 sqlalchemy, postgres, clickhouse, redis, nats, docker. i end up on the parts
 that fail quietly: locks, queues, query plans, auth.
 
+currently at a financial-monitoring agency, building an internal crm from
+scratch: role-scoped access, a clickhouse-to-postgres migration that turned
+10-second pages into sub-second ones by killing an n+1 and rewriting `or` chains
+as `union`, terabyte datasets moved to s3, and xml documents signed with digital
+signatures. air-gapped, so the ci had to work with no internet.
+
 aitu college, red diploma june 2026, then astana it university.
 
 ---
 
 **[moxy](https://github.com/tempoloss/moxy)** · go, redis
 
-a reliability layer for redis queues. a lease is a claim with an expiry, so an
-unacknowledged task comes back instead of vanishing when its worker dies. a lease
-is journalled before it becomes visible to anyone, and a restart replays the
-journal instead of stranding what was in flight. the task leaves the ready queue
-before that record is durable, though, so a crash in between used to leave it
-held by nobody — startup now reconciles the backend against the journal and hands
-those tasks back. every crash window is enumerated in `docs/failure-matrix.md`
-with the test that proves it; the guarantee is at-least-once, not exactly-once.
-the lua scripts that move tasks between ready, processing and dead run against a
-live redis in ci — before that they shipped having never once been executed.
+a reliability layer for redis queues. a plain pop deletes the task outright, so a
+worker that dies mid-task takes it with them and redis keeps no record it existed.
+a lease is a claim with an expiry, so an unacknowledged task comes back instead.
+the lease is journalled before anyone can see it, and a restart replays the
+journal rather than stranding what was in flight — though the task leaves the
+ready queue before that record is durable, so a crash in between used to leave it
+held by nobody, and startup now reconciles the backend against the journal to
+hand those tasks back. every crash window is enumerated in
+`docs/failure-matrix.md` with the test that proves it; the guarantee is
+at-least-once, not exactly-once. the lua scripts that move tasks between ready,
+processing and dead run against a live redis in ci — before that they shipped
+having never once been executed.
 
 **[search-gateway](https://github.com/tempoloss/search-gateway)** · python, fastapi
 
