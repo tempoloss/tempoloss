@@ -7,12 +7,6 @@ backend engineer in astana. mostly python and go — fastapi, litestar,
 sqlalchemy, postgres, clickhouse, redis, nats, docker. i end up on the parts
 that fail quietly: locks, queues, query plans, auth.
 
-currently at a financial-monitoring agency, building an internal crm from
-scratch: role-scoped access, a clickhouse-to-postgres migration that turned
-10-second pages into sub-second ones by killing an n+1 and rewriting `or` chains
-as `union`, terabyte datasets moved to s3, and xml documents signed with digital
-signatures. air-gapped, so the ci had to work with no internet.
-
 aitu college, red diploma june 2026, then astana it university.
 
 ---
