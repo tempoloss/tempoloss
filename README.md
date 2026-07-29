@@ -3,16 +3,15 @@
 *in chess, a move that accomplishes nothing. 2500+ elo and i still play them, so
 it felt like the honest option.*
 
-backend engineer in astana. fullstack at the **agency of financial monitoring** —
-crm built from scratch, a clickhouse to postgres migration that took page loads
-from fifteen seconds to under one, document pipelines behind an air gap. aitu
-college, red diploma june 2026, then astana it university.
+backend engineer in astana. mostly python and go — fastapi, litestar,
+sqlalchemy, postgres, clickhouse, redis, nats, docker. i end up on the parts
+that fail quietly: locks, queues, query plans, auth.
 
-mostly python and go. fastapi, litestar and sqlalchemy on one side; go for
-anything that should be a single binary you can drop on a box. postgres and
-clickhouse for what sits still, redis and nats for what moves, docker and linux
-underneath. i end up on the parts that fail quietly: locks, queues, query plans,
-auth.
+fullstack at the **agency of financial monitoring**: crm from scratch, a
+clickhouse to postgres migration that took page loads from fifteen seconds to
+under one, document pipelines behind an air gap.
+
+aitu college, red diploma june 2026, then astana it university.
 
 ---
 
