@@ -4,10 +4,9 @@
 it felt like the honest option.*
 
 backend engineer in astana. mostly python and go — fastapi, litestar,
-sqlalchemy, postgres, clickhouse, redis, nats, docker. i end up on the parts
-that fail quietly: locks, queues, query plans, auth.
+sqlalchemy, postgres, clickhouse, redis, nats, docker. 
 
-aitu college, red diploma june 2026, then astana it university.
+aitu college graduate
 
 ---
 
@@ -26,15 +25,13 @@ at-least-once, not exactly-once. the lua scripts that move tasks between ready,
 processing and dead run against a live redis in ci — before that they shipped
 having never once been executed.
 
-**[search-gateway](https://github.com/tempoloss/search-gateway)** · python, fastapi
+**[search-gateway](https://github.com/tempoloss/search-gateway)** · python
 
 one gateway over five search apis, with failover between them. every failure is
 first blamed on the key, the provider or the caller, and only then does anything
-decide whether a retry is even the right move. a malformed query burning a whole
-credential pool to arrive at the same 400 is not resilience, it is an outage you
-paid for.
+decide whether a retry is the right move. 
 
-**[chessview](https://github.com/tempoloss/chessview)** · python, react
+**[chessview](https://github.com/tempoloss/chessview)** · python, typescript
 
 realtime chess where the server owns the board and every clock, and the client
 gets no vote. clients send intent and are told what happened. disconnects pause
@@ -68,8 +65,8 @@ generated columns, arrays, domains.
 
 **[mentor-skill](https://github.com/tempoloss/mentor-skill)** · agent skill
 
-refuses to let me merge code i can't explain. shows the failure, prices the
-alternatives, then stops and makes me say it back. keeps a ledger of what i
+refuses to let you merge code you can't explain. shows the failure, prices the
+alternatives, then stops and makes you say it back. keeps a ledger of what you
 actually understood, and asks again once it has gone stale.
 
 **[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell
