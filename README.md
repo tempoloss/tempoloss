@@ -16,57 +16,54 @@ auth.
 
 ---
 
-> the worker died holding the task. the queue never noticed. nobody found out
-> until the person waiting on it asked.
+**[moxy](https://github.com/tempoloss/moxy)** · go, redis
 
-**moxy** · go, redis
+a reliability layer for redis queues. a lease is a claim with an expiry, so an
+unacknowledged task comes back instead of vanishing when its worker dies. every
+lease transition is journalled before it happens, which means a restart replays
+what was in flight rather than stranding it. the lua scripts that move tasks
+between ready, processing and dead run against a live redis in ci — before that
+they shipped having never once been executed.
 
-a lease is a claim with an expiry, so an unacknowledged task comes back instead
-of vanishing. every lease transition is journalled before it happens, which means
-a restart replays what was in flight rather than stranding it. the lua scripts
-that move tasks between ready, processing and dead now run against a live redis
-in ci — before that they shipped having never once been executed.
+**[search-gateway](https://github.com/tempoloss/search-gateway)** · python, fastapi
 
-> the provider returns 400 because the query was malformed. the retry loop tries
-> it again. with every key we own.
+one gateway over five search apis, with failover between them. every failure is
+first blamed on the key, the provider or the caller, and only then does anything
+decide whether a retry is even the right move. a malformed query burning a whole
+credential pool to arrive at the same 400 is not resilience, it is an outage you
+paid for.
 
-**search-gateway** · python, fastapi
+**[chessview](https://github.com/tempoloss/chessview)** · python, react
 
-one gateway over five search apis. every failure is first blamed on the key, the
-provider or the caller, and only then does anything decide whether a retry is
-even the right move. a bad request burning a whole credential pool to arrive at
-the same 400 is not resilience, it is an outage you paid for.
+realtime chess where the server owns the board and every clock, and the client
+gets no vote. clients send intent and are told what happened. disconnects pause
+the clock instead of losing the game, and engine analysis runs in your own
+browser rather than on my bill.
 
-> the client says it moved its rook. the client is lying.
+**[db-seed](https://github.com/tempoloss/db-seed)** · go
 
-**chessview** · python, react
+seeds a database in dependency order: reads the schema, builds the graph, sorts
+it topologically, breaks cycles through nullable columns. the sort runs twenty
+times in ci, because one green pass does not distinguish a correct ordering from
+a lucky one.
 
-the server owns the board and every clock. clients send intent and are told what
-happened. disconnects pause the clock instead of losing the game, and engine
-analysis runs in your own browser rather than on my bill.
+<details>
+<summary>&nbsp;smaller things</summary>
 
-> insert into orders failed: foreign key constraint. it worked yesterday.
+<br/>
 
-**db-seed** · go
-
-reads the schema, builds the dependency graph, seeds tables in topological order.
-cycles get broken through nullable columns. the sort runs twenty times in ci,
-because one green pass does not distinguish a correct ordering from a lucky one.
-
-> looks right. ship it.
-
-**mentor-skill** · agent skill
+**[mentor-skill](https://github.com/tempoloss/mentor-skill)** · agent skill
 
 refuses to let me merge code i can't explain. shows the failure, prices the
 alternatives, then stops and makes me say it back. keeps a ledger of what i
 actually understood, and asks again once it has gone stale.
 
-> new machine.
-
-**terminal-setup** · powershell
+**[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell
 
 windows terminal, powershell, oh my posh. one script, and the beige is gone.
 
+</details>
+
 ---
 
-an8kk.dev &nbsp;·&nbsp; t.me/tempoloss &nbsp;·&nbsp; astana, kazakhstan
+[an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; astana, kazakhstan
