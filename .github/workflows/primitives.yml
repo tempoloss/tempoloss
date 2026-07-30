@@ -18,9 +18,11 @@ on:
       - "tools/primitives/**"
       - ".github/workflows/primitives.yml"
   schedule:
-    # The inputs live in other repositories, so nothing here triggers on their
-    # changes. Monthly is a backstop, not the gate.
-    - cron: "0 6 1 * *"
+    # The inputs live in five other repositories, and nothing there can trigger a
+    # run here without a cross-repository token, so this is the sweep that
+    # notices drift the day it appears instead of a month later. Not on the hour:
+    # that is when every cron on GitHub fires at once.
+    - cron: "17 6 * * *"
   workflow_dispatch:
 
 permissions:
