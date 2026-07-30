@@ -1,0 +1,78 @@
+name: Primitives reader
+
+# The reader is one self-contained HTML file built from five repositories. Its
+# inputs live there (docs/primitives.md and docs/primitives.code.json), so this
+# job exists to prove the file can still be rebuilt from committed state alone,
+# and to hand back the built copy as an artifact.
+#
+# Each repository checks its own anchors on every push; this build refuses to
+# produce a reader when any of them is stale, because a reader built on a moved
+# anchor explains one piece of code while showing another.
+on:
+  push:
+    paths:
+      - "tools/primitives/**"
+      - ".github/workflows/primitives.yml"
+  pull_request:
+    paths:
+      - "tools/primitives/**"
+      - ".github/workflows/primitives.yml"
+  schedule:
+    # The inputs live in other repositories, so nothing here triggers on their
+    # changes. Monthly is a backstop, not the gate.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build reader
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@v4
+        with:
+          path: tempoloss
+
+      - name: Check out moxy
+        uses: actions/checkout@v4
+        with:
+          repository: tempoloss/moxy
+          path: moxy
+
+      - name: Check out search-gateway
+        uses: actions/checkout@v4
+        with:
+          repository: tempoloss/search-gateway
+          path: search-gateway
+
+      - name: Check out db-seed
+        uses: actions/checkout@v4
+        with:
+          repository: tempoloss/db-seed
+          path: db-seed
+
+      - name: Check out chessview
+        uses: actions/checkout@v4
+        with:
+          repository: tempoloss/chessview
+          path: chessview
+
+      - name: Check out quackiso
+        uses: actions/checkout@v4
+        with:
+          repository: tempoloss/quackiso
+          path: quackiso
+
+      - name: Build the reader
+        run: python3 tempoloss/tools/primitives/build_reader.py --root . --out primitives.html
+
+      - name: Upload the reader
+        uses: actions/upload-artifact@v4
+        with:
+          name: primitives-reader
+          path: primitives.html
+          if-no-files-found: error

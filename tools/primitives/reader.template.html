@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>primitives — код моих проектов построчно</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#21262d;--fg:#c9d1d9;--dim:#8b949e;
+--acc:#58a6ff;--ok:#3fb950;--warn:#d29922;--code:#1f2428;--hl:#1f2f47}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+code{background:var(--code);padding:.1em .35em;border-radius:4px;font-size:.88em;
+font-family:ui-monospace,"Cascadia Code",Consolas,monospace}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+a.loc{font-family:ui-monospace,Consolas,monospace;font-size:.85em;
+background:#132030;padding:.1em .35em;border-radius:4px;white-space:nowrap}
+header{position:sticky;top:0;z-index:10;background:rgba(13,17,23,.97);
+backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 20px}
+.wrap{max-width:980px;margin:0 auto}
+h1{margin:0 0 2px;font-size:17px;font-weight:600}
+.sub{color:var(--dim);font-size:13px;margin-bottom:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=search]{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);
+color:var(--fg);padding:8px 11px;border-radius:7px;font-size:14px}
+input[type=search]:focus{outline:none;border-color:var(--acc)}
+.chip{background:var(--panel);border:1px solid var(--line);color:var(--dim);
+padding:5px 11px;border-radius:20px;font-size:12.5px;cursor:pointer;user-select:none}
+.chip:hover{color:var(--fg)}
+.chip.on{background:#1f6feb22;border-color:var(--acc);color:var(--acc)}
+#areas{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:3px}
+#areas::-webkit-scrollbar{height:5px}
+#areas::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+#areas .chip{flex:0 0 auto}
+.bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+main{max-width:980px;margin:0 auto;padding:22px 20px 90px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+padding:16px 18px;margin-bottom:14px}
+.card.done{border-color:#238636aa}.card.done .ct{opacity:.6}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:7px}
+.badge{font-size:11px;padding:2px 8px;border-radius:20px;background:#1f6feb22;color:var(--acc)}
+.badge.area{background:#8b949e22;color:var(--dim)}
+h3{margin:0 0 8px;font-size:16.5px;font-weight:600;line-height:1.4}
+.card p{margin:.55em 0}
+.fld{margin-top:12px;padding-top:11px;border-top:1px solid var(--line)}
+.lbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);
+font-weight:600;margin-bottom:5px}
+.lbl.br{color:var(--warn)}.lbl.ok{color:var(--ok)}
+ol{margin:.4em 0;padding-left:1.35em}ol li{margin:.28em 0}
+.hidden{display:none}
+.reveal{background:#21262d;border:1px solid var(--line);color:var(--dim);
+padding:7px 13px;border-radius:7px;cursor:pointer;font-size:13px;margin-top:10px;width:100%}
+.reveal:hover{color:var(--fg);border-color:var(--acc)}
+.gotit{background:none;border:1px solid var(--line);color:var(--dim);border-radius:20px;
+padding:4px 12px;font-size:12px;cursor:pointer;margin-left:auto}
+.gotit:hover{color:var(--ok);border-color:var(--ok)}
+.gotit.on{color:var(--ok);border-color:#238636aa;background:#23863618}
+.empty{color:var(--dim);text-align:center;padding:50px 0}
+kbd{background:var(--code);border:1px solid var(--line);border-radius:4px;
+padding:1px 5px;font-size:11px;font-family:monospace}
+details.codefld{margin-top:12px;border-top:1px solid var(--line);padding-top:11px}
+details.codefld>summary{cursor:pointer;color:var(--acc);font-size:12px;
+text-transform:uppercase;letter-spacing:.6px;font-weight:600;list-style:none}
+details.codefld>summary::-webkit-details-marker{display:none}
+details.codefld>summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.codefld[open]>summary::before{content:"▾ "}
+.walk{margin:10px 0 4px;padding:10px 12px;background:#1f6feb14;
+border-left:2px solid var(--acc);border-radius:0 6px 6px 0;font-size:14px}
+.snip{margin-top:12px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.sh{display:flex;justify-content:space-between;align-items:center;gap:8px;
+padding:7px 10px;background:#0f1419;border-bottom:1px solid var(--line)}
+.lang{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.why{padding:8px 11px;color:var(--dim);font-size:13.5px;background:#0f1419;
+border-bottom:1px solid var(--line)}
+table.code{width:100%;border-collapse:collapse;background:#0c1016;
+font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:12.5px;line-height:1.55}
+table.code td{padding:1px 0;vertical-align:top}
+table.code td.num{width:56px;min-width:56px;text-align:right;padding-right:14px;color:#4b5563;
+user-select:none;border-right:1px solid var(--line)}
+table.code td.src{padding-left:14px;white-space:pre;overflow-x:auto}
+tr.hl td{background:var(--hl)}
+tr.hl td.num{color:var(--acc);font-weight:600}
+table.code tr.ntr td.nt{padding:6px 14px 9px;color:#a5b3c4;font-size:13px;line-height:1.55;
+white-space:normal;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#111823;border-bottom:1px solid var(--line)}
+table.code tr.ntr td.num{background:#111823;color:var(--acc);padding-right:14px}
+.cmt{color:#6b7684}
+</style></head><body>
+<header><div class="wrap">
+<h1>примитивы моих проектов — с кодом построчно</h1>
+<div class="sub"><span id="cnt"></span> &nbsp;·&nbsp; 173 фрагмента кода, 1108 построчных пояснений
+&nbsp;·&nbsp; <kbd>/</kbd> поиск</div>
+<div class="row">
+  <input type="search" id="q" placeholder="искать по тексту, коду и пояснениям…">
+  <span class="chip" id="mode" title="скрыть последствия, чтобы предсказать самому">режим проверки</span>
+  <span class="chip" id="expand" title="раскрыть или свернуть весь код">весь код</span>
+  <span class="chip" id="reset">сбросить</span>
+</div>
+<div class="row" style="margin-top:9px" id="repos"></div>
+<div class="row" style="margin-top:7px" id="areas"></div>
+<div class="bar"><i id="pb"></i></div>
+</div></header>
+<main id="list"></main>
+<script>
+const DATA = [];
+const KEY = "primitives.understood.v2";
+let done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+let fRepo = null, fArea = null, testMode = false, q = "";
+
+const el = (h) => { const d = document.createElement("div"); d.innerHTML = h.trim(); return d.firstChild; };
+const norm = (s) => s.toLowerCase().replace(/<[^>]+>/g, " ");
+
+function chips() {
+  const rs = [...new Set(DATA.map(d => d.repo))];
+  document.getElementById("repos").innerHTML = rs.map(r => {
+    const t = DATA.filter(d => d.repo === r).length;
+    const k = DATA.filter(d => d.repo === r && done.has(d.id)).length;
+    return `<span class="chip repo ${fRepo===r?'on':''}" data-r="${r}">${r} <span style="opacity:.65">${k}/${t}</span></span>`;
+  }).join("");
+  const as = [...new Set(DATA.filter(d => !fRepo || d.repo === fRepo).map(d => d.area))];
+  document.getElementById("areas").innerHTML =
+    as.map(a => `<span class="chip area ${fArea===a?'on':''}" data-a="${a}">${a}</span>`).join("");
+  document.querySelectorAll(".chip.repo").forEach(c => c.onclick = () => {
+    fRepo = fRepo === c.dataset.r ? null : c.dataset.r; fArea = null; chips(); render(); });
+  document.querySelectorAll(".chip.area").forEach(c => c.onclick = () => {
+    fArea = fArea === c.dataset.a ? null : c.dataset.a; chips(); render(); });
+}
+
+function render() {
+  const vis = DATA.filter(d =>
+    (!fRepo || d.repo === fRepo) && (!fArea || d.area === fArea) &&
+    (!q || norm(d.h_title+d.h_prose+d.h_where+d.h_breaks+d.h_caught+d.h_code).includes(q)));
+  const list = document.getElementById("list");
+  list.innerHTML = vis.length ? "" : '<div class="empty">ничего не нашлось</div>';
+  for (const d of vis) {
+    const isDone = done.has(d.id);
+    const card = el(`<article class="card ${isDone?'done':''}">
+      <div class="meta"><span class="badge">${d.repo}</span>
+      <span class="badge area">${d.area}</span>
+      <button class="gotit ${isDone?'on':''}">${isDone?'\u2713 понял':'понял'}</button></div>
+      <div class="ct"><h3>${d.h_title}</h3>${d.h_prose}
+      <div class="fld"><div class="lbl">где в коде</div>${d.h_where}</div>
+      <button class="reveal ${testMode?'':'hidden'}">показать, что ломается \u2192</button>
+      <div class="ans ${testMode?'hidden':''}">
+        <div class="fld"><div class="lbl br">что ломается</div>${d.h_breaks}</div>
+        <div class="fld"><div class="lbl ok">чем это ловится</div>${d.h_caught}</div>
+      </div>${d.h_code}</div></article>`);
+    card.querySelector(".gotit").onclick = (ev) => {
+      ev.stopPropagation();
+      if (done.has(d.id)) { done.delete(d.id); } else { done.add(d.id); }
+      localStorage.setItem(KEY, JSON.stringify([...done]));
+      render(); chips(); counts();
+    };
+    const rv = card.querySelector(".reveal"), ans = card.querySelector(".ans");
+    rv.onclick = () => { ans.classList.remove("hidden"); rv.classList.add("hidden"); };
+    list.appendChild(card);
+  }
+  counts();
+}
+
+function counts() {
+  document.getElementById("cnt").textContent = `${DATA.length} записей \u00b7 понял ${done.size}`;
+  document.getElementById("pb").style.width = (done.size / DATA.length * 100) + "%";
+}
+
+document.getElementById("q").oninput = (e) => { q = e.target.value.toLowerCase().trim(); render(); };
+document.getElementById("mode").onclick = (e) => {
+  testMode = (testMode === true) ? false : true;
+  e.target.classList.toggle("on", testMode); render(); };
+document.getElementById("expand").onclick = () => {
+  const ds = document.querySelectorAll("details.codefld");
+  const anyClosed = [...ds].some(d => !d.open);
+  ds.forEach(d => d.open = anyClosed);
+};
+document.getElementById("reset").onclick = () => {
+  if (confirm("Сбросить отметки \u00abпонял\u00bb?")) {
+    done = new Set(); localStorage.removeItem(KEY); render(); chips(); counts(); } };
+document.addEventListener("keydown", (e) => {
+  if (e.key === "/" && document.activeElement.id !== "q") { e.preventDefault(); document.getElementById("q").focus(); }
+  if (e.key === "Escape") { document.getElementById("q").value = ""; q = ""; render(); } });
+
+chips(); render();
+</script></body></html>
