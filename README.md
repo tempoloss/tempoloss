@@ -69,6 +69,13 @@ refuses to let you merge code you can't explain. shows the failure, prices the
 alternatives, then stops and makes you say it back. keeps a ledger of what you
 actually understood, and asks again once it has gone stale.
 
+**[jot](https://github.com/tempoloss/jot)** · javascript, cloudflare workers
+
+a telegram bot that keeps notes as github issues. anything you send is a note —
+deciding whether a thought is a task is work, and doing it at capture time is how
+the note never gets written. `/task` promotes one later. storage is issues, so
+the github app is a second client i didn't have to write.
+
 **[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell
 
 windows terminal, powershell, oh my posh. one script, and the beige is gone.
