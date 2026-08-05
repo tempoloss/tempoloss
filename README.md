@@ -76,6 +76,12 @@ deciding whether a thought is a task is work, and doing it at capture time is ho
 the note never gets written. `/task` promotes one later. storage is issues, so
 the github app is a second client i didn't have to write.
 
+**[shipwatch](https://github.com/tempoloss/shipwatch)** · python, github actions
+
+keeps public follow-through from getting forgotten: release tags and iso 20022
+changes become github issues and telegram messages. state is written only after
+every sink accepts, so a failed delivery retries instead of going silent.
+
 **[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell
 
 windows terminal, powershell, oh my posh. one script, and the beige is gone.
