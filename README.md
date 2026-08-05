@@ -82,6 +82,12 @@ keeps public follow-through from getting forgotten: release tags and iso 20022
 changes become github issues and telegram messages. state is written only after
 every sink accepts, so a failed delivery retries instead of going silent.
 
+**[bugchat](https://github.com/tempoloss/bugchat)** · python, telegram, plane
+
+a telegram bug chat becomes a plane board. bursts from one author become one
+task instead of three fragments, screenshots stay with the report, replies become
+comments, and a closed task gets answered back in the chat.
+
 **[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell
 
 windows terminal, powershell, oh my posh. one script, and the beige is gone.
