@@ -18,7 +18,7 @@
 
 <p align="center">
   <a href="https://api.lanyard.rest/v1/users/1429262043487273092/spotify/redirect">
-    <img alt="now playing" src="https://lanyard.cnrad.dev/api/1429262043487273092?theme=dark&bg=0b0d0e&hideDiscrim=true&idleMessage=nothing%20playing&borderRadius=0px" width="380"/>
+    <img alt="now playing" src="https://an8kk.dev/api/np" width="380"/>
   </a>
 </p>
 
