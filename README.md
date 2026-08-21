@@ -1,14 +1,35 @@
 # tempoloss
 
-*in chess, a move that accomplishes nothing. 2500+ elo and i still play them, so
-it felt like the honest option.*
+backend engineer in astana. python, go, rust.
 
-backend engineer in astana. mostly python and go — fastapi, litestar,
-sqlalchemy, postgres, clickhouse, redis, nats, docker. 
+aitu college graduate; mathematical and computational science undergrad
 
-aitu college graduate
+<!--live:start-->
+```
+tmp@astana:~$ status
+chess    bullet 2419 · peak 2602
+music    last played: playboi carti - fomdj
+llm      866,941,544 tokens
+shipped  quackiso v1.5.1 · duckdb community registry
+updated  2026-08-21 22:38 utc
+```
+<!--live:end-->
 
 ---
+
+**[quackiso](https://github.com/tempoloss/quackiso)** · rust, duckdb
+
+reads iso 20022 and swift mt bank messages as sql tables — camt statements and
+notifications, pacs transfers, pain initiations, and the mt940/mt942 files banks
+actually dump. amounts never touch a float, because
+`0.10 + 0.20 + 0.30 + 1500.10` is `1500.7000000000003` and that is somebody's
+money. a 1.7 gb statement parses in about 2 mb of memory, and ci asserts that
+number on every push. lives in the
+[official duckdb community registry](https://community-extensions.duckdb.org/extensions/quackiso.html);
+getting it there involved finding and fixing a bug in the
+[registry's own release pipeline](https://github.com/duckdb/community-extensions/pull/2430).
+tested against ~280 real messages from more than a dozen banks and vendors; every
+special case in the parser is there because one of those files broke it.
 
 **[moxy](https://github.com/tempoloss/moxy)** · go, redis
 
@@ -37,16 +58,6 @@ realtime chess where the server owns the board and every clock, and the client
 gets no vote. clients send intent and are told what happened. disconnects pause
 the clock instead of losing the game, and engine analysis runs in your own
 browser rather than on my bill.
-
-**[quackiso](https://github.com/tempoloss/quackiso)** · rust, duckdb
-
-reads iso 20022 bank messages as sql tables — camt statements, camt notifications,
-pacs transfers, pain initiations. amounts never touch a float, because
-`0.10 + 0.20 + 0.30 + 1500.10` is `1500.7000000000003` and that is somebody's
-money. a 1.7 gb statement parses in about 2 mb of memory, since it streams events
-instead of building a tree. tested against 45 real messages from nine banks and
-vendors; every special case in the parser is there because one of those files
-broke it.
 
 **[db-seed](https://github.com/tempoloss/db-seed)** · go
 
@@ -96,4 +107,4 @@ windows terminal, powershell, oh my posh. one script, and the beige is gone.
 
 ---
 
-[an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; astana, kazakhstan
+[an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; [me@an8kk.dev](mailto:me@an8kk.dev) &nbsp;·&nbsp; astana, kazakhstan
