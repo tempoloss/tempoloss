@@ -1,8 +1,9 @@
-# tempoloss
-
-backend engineer in astana. python, go, rust.
-
+```
+tmp@astana:~$ whoami
+tempoloss · backend engineer, astana
+python, go, rust
 aitu college graduate; mathematical and computational science undergrad
+```
 
 <!--live:start-->
 ```
@@ -15,7 +16,9 @@ updated  2026-08-21 22:42 utc
 ```
 <!--live:end-->
 
----
+```
+tmp@astana:~$ ls ~/things-that-ship
+```
 
 **[quackiso](https://github.com/tempoloss/quackiso)** · rust, duckdb
 
@@ -70,7 +73,7 @@ file, not a wish: reserved-word table names, composite keys, `match full`,
 generated columns, arrays, domains.
 
 <details>
-<summary>&nbsp;smaller things</summary>
+<summary>&nbsp;ls ~/smaller-things</summary>
 
 <br/>
 
@@ -105,6 +108,12 @@ windows terminal, powershell, oh my posh. one script, and the beige is gone.
 
 </details>
 
----
+```
+tmp@astana:~$ contact --sorted-by=speed
+```
 
-[an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; [me@an8kk.dev](mailto:me@an8kk.dev) &nbsp;·&nbsp; astana, kazakhstan
+[t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; [an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [me@an8kk.dev](mailto:me@an8kk.dev)
+
+```
+tmp@astana:~$ █
+```
