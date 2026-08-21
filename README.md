@@ -1,24 +1,21 @@
-```
-tmp@astana:~$ whoami
-tempoloss · backend engineer, astana
-python, go, rust
-aitu college graduate; mathematical and computational science undergrad
-```
+# tempoloss
+
+backend engineer in astana. python, go, rust.
+
+aitu college graduate; mathematical and computational science undergrad.
+
+## now
 
 <!--live:start-->
-```
-tmp@astana:~$ status
-chess    bullet 2419 · peak 2602
-music    last played: playboi carti - fomdj
-llm      866,941,544 tokens
-shipped  quackiso v1.5.1 · duckdb community registry
-updated  2026-08-21 22:42 utc
-```
+- **chess**: bullet 2419 · peak 2602
+- **music**: playboi carti - fomdj
+- **llm tokens**: 866,941,544
+- **shipped**: quackiso v1.5.1 · duckdb community registry
+
+<sub>updated 2026-08-21 22:48 utc</sub>
 <!--live:end-->
 
-```
-tmp@astana:~$ ls ~/things-that-ship
-```
+## things that ship
 
 **[quackiso](https://github.com/tempoloss/quackiso)** · rust, duckdb
 
@@ -73,7 +70,7 @@ file, not a wish: reserved-word table names, composite keys, `match full`,
 generated columns, arrays, domains.
 
 <details>
-<summary>&nbsp;ls ~/smaller-things</summary>
+<summary>&nbsp;smaller things</summary>
 
 <br/>
 
@@ -108,12 +105,6 @@ windows terminal, powershell, oh my posh. one script, and the beige is gone.
 
 </details>
 
-```
-tmp@astana:~$ contact --sorted-by=speed
-```
+## contact
 
 [t.me/tempoloss](https://t.me/tempoloss) &nbsp;·&nbsp; [an8kk.dev](https://an8kk.dev) &nbsp;·&nbsp; [me@an8kk.dev](mailto:me@an8kk.dev)
-
-```
-tmp@astana:~$ █
-```

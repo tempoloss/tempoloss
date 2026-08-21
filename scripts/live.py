@@ -22,13 +22,13 @@ def get(url: str, timeout: int = 15):
         return r.read().decode("utf-8")
 
 
-def chess() -> str | None:
+def chess() -> tuple[str, str] | None:
     d = json.loads(get("https://api.chess.com/pub/player/an8kk/stats"))
     b = d.get("chess_bullet") or {}
     last, best = b.get("last", {}).get("rating"), b.get("best", {}).get("rating")
     if not last:
         return None
-    return f"chess    bullet {last} · peak {best}"
+    return "chess", f"bullet {last} · peak {best}"
 
 
 def music() -> str | None:
@@ -40,7 +40,7 @@ def music() -> str | None:
     artist, track = tm.get("artist_name"), tm.get("track_name")
     if not artist:
         return None
-    return f"music    last played: {artist} - {track}".lower()
+    return "music", f"{artist} - {track}".lower()
 
 
 def tokens() -> str | None:
@@ -48,7 +48,7 @@ def tokens() -> str | None:
     n = d.get("llm_tokens")
     if not n:
         return None
-    return f"llm      {n:,} tokens"
+    return "llm tokens", f"{n:,}"
 
 
 def shipped() -> str | None:
@@ -58,7 +58,7 @@ def shipped() -> str | None:
     m = re.search(r"^\s*version:\s*\"?([\d.]+)\"?", t, re.M)
     if not m:
         return None
-    return f"shipped  quackiso v{m.group(1)} · duckdb community registry"
+    return "shipped", f"quackiso v{m.group(1)} · duckdb community registry"
 
 
 def main() -> int:
@@ -69,25 +69,22 @@ def main() -> int:
 
     current = text[text.index(START) + len(START) : text.index(END)]
     lines = {}
-    for line in current.splitlines():
-        key = line.split(" ", 1)[0].strip()
-        if key:
-            lines[key] = line
+    for m in re.finditer(r"- \*\*(.+?)\*\*: (.+)", current):
+        lines[m.group(1)] = m.group(2)
 
     for fn in (chess, music, tokens, shipped):
         try:
-            line = fn()
+            got = fn()
         except Exception as exc:  # noqa: BLE001 - a dead API must not kill the block
             print(f"{fn.__name__} failed: {exc}", file=sys.stderr)
             continue
-        if line:
-            lines[line.split(" ", 1)[0]] = line
+        if got:
+            lines[got[0]] = got[1]
 
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M utc")
-    order = ["tmp@astana:~$", "chess", "music", "llm", "shipped", "updated"]
-    lines["tmp@astana:~$"] = "tmp@astana:~$ status"
-    lines["updated"] = f"updated  {stamp}"
-    block = "\n```\n" + "\n".join(lines[k] for k in order if k in lines) + "\n```\n"
+    order = ["chess", "music", "llm tokens", "shipped"]
+    body = "\n".join(f"- **{k}**: {lines[k]}" for k in order if k in lines)
+    block = "\n" + body + f"\n\n<sub>updated {stamp}</sub>\n"
 
     new = text[: text.index(START) + len(START)] + block + text[text.index(END) :]
     if new == text:
