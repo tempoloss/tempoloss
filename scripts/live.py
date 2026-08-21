@@ -46,7 +46,7 @@ def main() -> int:
         print("no listens")
         return 0
 
-    block = f"\n  **{track}**\n"
+    block = f"**{track}**"
     new = text[: text.index(START) + len(START)] + block + text[text.index(END) :]
     if new == text:
         print("no change")

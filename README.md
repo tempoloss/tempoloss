@@ -20,10 +20,7 @@
 
 - ♟️ **2500+ peak** on [chess.com](https://www.chess.com/member/an8kk), bullet mostly. challenges welcome
 - 📐 math is the love of my life; the degree agrees
-- 🎧 lately on repeat:
-<!--live:start-->
-  **playboi carti - fomdj**
-<!--live:end-->
+- 🎧 lately on repeat: <!--live:start-->**playboi carti - fomdj**<!--live:end-->
 - 🎮 making a game. details when it's real
 
 ### stack
