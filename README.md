@@ -19,7 +19,7 @@
 ### brief
 
 - ♟️ **2500+ peak** on [chess.com](https://www.chess.com/member/an8kk), bullet mostly. challenges welcome
-- 📐 math is the love of my life; the degree agrees
+- 📐 math is the love of my life
 - 🎧 lately on repeat: <!--live:start-->**playboi carti - fomdj**<!--live:end-->
 - 🎮 making a game. details when it's real
 
@@ -31,7 +31,7 @@
   </a>
 </p>
 
-### things that ship
+### projects
 
 **[quackiso](https://github.com/tempoloss/quackiso)** · rust, duckdb
 
