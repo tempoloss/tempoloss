@@ -16,6 +16,12 @@
   <img alt="visitors" src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Ftempoloss%2Ftempoloss&label=visitors&icon=github&color=%233fb950">
 </p>
 
+<p align="center">
+  <a href="https://api.lanyard.rest/v1/users/1429262043487273092/spotify/redirect">
+    <img alt="now playing" src="https://lanyard.cnrad.dev/api/1429262043487273092?theme=dark&bg=0b0d0e&hideDiscrim=true&idleMessage=nothing%20playing&borderRadius=0px" width="380"/>
+  </a>
+</p>
+
 ### brief
 
 - ♟️ **2500+ peak** on [chess.com](https://www.chess.com/member/an8kk), bullet mostly. challenges welcome
