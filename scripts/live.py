@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""Rewrite the live status block in README.md from public APIs.
+"""Rewrite the now-playing line in README.md from ListenBrainz.
 
-Runs on a schedule in CI. Every source is optional: a dead API keeps the
-previous line, so the block degrades one line at a time instead of whole.
+Runs on a schedule in CI. A dead API keeps the previous line.
 """
 
 import json
-import re
 import sys
 import urllib.request
-from datetime import datetime, timezone
 from pathlib import Path
 
 README = Path(__file__).resolve().parent.parent / "README.md"
@@ -22,15 +19,6 @@ def get(url: str, timeout: int = 15):
         return r.read().decode("utf-8")
 
 
-def chess() -> tuple[str, str] | None:
-    d = json.loads(get("https://api.chess.com/pub/player/an8kk/stats"))
-    b = d.get("chess_bullet") or {}
-    last, best = b.get("last", {}).get("rating"), b.get("best", {}).get("rating")
-    if not last:
-        return None
-    return "chess", f"bullet {last} · peak {best}"
-
-
 def music() -> str | None:
     d = json.loads(get("https://api.listenbrainz.org/1/user/tempoloss/listens?count=1"))
     listens = d.get("payload", {}).get("listens") or []
@@ -40,25 +28,7 @@ def music() -> str | None:
     artist, track = tm.get("artist_name"), tm.get("track_name")
     if not artist:
         return None
-    return "music", f"{artist} - {track}".lower()
-
-
-def tokens() -> str | None:
-    d = json.loads(get("https://an8kk.dev/api/tok"))
-    n = d.get("llm_tokens")
-    if not n:
-        return None
-    return "llm tokens", f"{n:,}"
-
-
-def shipped() -> str | None:
-    t = get(
-        "https://raw.githubusercontent.com/duckdb/community-extensions/main/extensions/quackiso/description.yml"
-    )
-    m = re.search(r"^\s*version:\s*\"?([\d.]+)\"?", t, re.M)
-    if not m:
-        return None
-    return "shipped", f"quackiso v{m.group(1)} · duckdb community registry"
+    return f"{artist} - {track}".lower()
 
 
 def main() -> int:
@@ -67,31 +37,22 @@ def main() -> int:
         print("no live markers in README", file=sys.stderr)
         return 1
 
-    current = text[text.index(START) + len(START) : text.index(END)]
-    lines = {}
-    for m in re.finditer(r"- \*\*(.+?)\*\*: (.+)", current):
-        lines[m.group(1)] = m.group(2)
+    try:
+        track = music()
+    except Exception as exc:  # noqa: BLE001 - a dead API must not kill the cron
+        print(f"listenbrainz failed: {exc}", file=sys.stderr)
+        return 0
+    if not track:
+        print("no listens")
+        return 0
 
-    for fn in (chess, music, tokens, shipped):
-        try:
-            got = fn()
-        except Exception as exc:  # noqa: BLE001 - a dead API must not kill the block
-            print(f"{fn.__name__} failed: {exc}", file=sys.stderr)
-            continue
-        if got:
-            lines[got[0]] = got[1]
-
-    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M utc")
-    order = ["chess", "music", "llm tokens", "shipped"]
-    body = "\n".join(f"- **{k}**: {lines[k]}" for k in order if k in lines)
-    block = "\n" + body + f"\n\n<sub>updated {stamp}</sub>\n"
-
+    block = f"\n  **{track}**\n"
     new = text[: text.index(START) + len(START)] + block + text[text.index(END) :]
     if new == text:
         print("no change")
         return 0
     README.write_text(new, encoding="utf-8")
-    print("README updated")
+    print(f"README updated: {track}")
     return 0
 
 
