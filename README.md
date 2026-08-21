@@ -18,7 +18,7 @@
 
 <p align="center">
   <a href="https://api.lanyard.rest/v1/users/1429262043487273092/spotify/redirect">
-    <img alt="now playing" src="https://an8kk.dev/api/np" width="380"/>
+    <img alt="now playing" src="https://an8kk.dev/api/np" width="520"/>
   </a>
 </p>
 
@@ -26,7 +26,6 @@
 
 - ♟️ **2500+ peak** on [chess.com](https://www.chess.com/member/an8kk), bullet mostly. challenges welcome
 - 📐 math is the love of my life
-- 🎧 lately on repeat: <!--live:start-->**playboi carti - fomdj**<!--live:end-->
 - 🎮 making a game. details when it's real
 
 ### stack
