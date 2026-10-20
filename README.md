@@ -13,7 +13,6 @@
   <a href="https://www.chess.com/member/an8kk"><img alt="chess.com bullet" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.chess.com%2Fpub%2Fplayer%2Fan8kk%2Fstats&query=%24.chess_bullet.last.rating&style=flat-square&label=chess%20bullet&color=3fb950"></a>
   <a href="https://github.com/tempoloss?tab=followers"><img alt="followers" src="https://img.shields.io/github/followers/tempoloss?style=flat-square&logo=github&label=followers&color=848d97"></a>
   <a href="https://github.com/tempoloss?tab=repositories"><img alt="stars" src="https://img.shields.io/github/stars/tempoloss?style=flat-square&logo=github&label=stars&color=848d97"></a>
-  <img alt="visitors" src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Ftempoloss%2Ftempoloss&label=visitors&icon=github&color=%233fb950">
 </p>
 
 <p align="center">
@@ -47,8 +46,9 @@ actually dump. amounts never touch a float, because
 money. a 1.7 gb statement parses in about 2 mb of memory, and ci asserts that
 number on every push. lives in the
 [official duckdb community registry](https://community-extensions.duckdb.org/extensions/quackiso.html);
-getting it there involved finding and fixing a bug in the
-[registry's own release pipeline](https://github.com/duckdb/community-extensions/pull/2430).
+getting it there involved finding a bug in the
+[registry's own release pipeline](https://github.com/duckdb/community-extensions/pull/2430)
+(my fix was superseded by the maintainers' rework in #2796).
 tested against ~280 real messages from more than a dozen banks and vendors; every
 special case in the parser is there because one of those files broke it.
 
@@ -83,3 +83,12 @@ browser rather than on my bill.
 - **[terminal-setup](https://github.com/tempoloss/terminal-setup)** · powershell — one script, and the beige is gone
 
 </details>
+
+### merged upstream
+
+- **[duckdb/community-extensions](https://github.com/duckdb/community-extensions/pulls?q=author%3Atempoloss+is%3Amerged)** · 8 merged, mostly quackiso releases in the official registry
+- **[Diasb4/Calculator#1](https://github.com/Diasb4/Calculator/pull/1)** · feat(bot): Move the bot to a VPS with its own Redis and harden security
+- **[mcp-telegram/mcp-telegram#79](https://github.com/mcp-telegram/mcp-telegram/pull/79)** · feat(profiles): Add telegram-get-saved-music
+- **[itsVentie/Marrow#36](https://github.com/itsVentie/Marrow/pull/36)** · ci: Repair broken CI and release workflows
+
+open upstream: **[opensanctions/yente#1283](https://github.com/opensanctions/yente/pull/1283)** · Load dataset metadata from metadata_url in manifests · **[GoPlasmatic/MXMessage#5](https://github.com/GoPlasmatic/MXMessage/pull/5)** · An amount above 2^53 is not the amount that was given
