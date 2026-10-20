@@ -76,7 +76,6 @@ browser rather than on my bill.
 
 - **[search-gateway](https://github.com/tempoloss/search-gateway)** · python — one gateway over five search apis; every failure is blamed on the key, the provider or the caller before anything decides whether a retry is the right move
 - **[db-seed](https://github.com/tempoloss/db-seed)** · go — seeds a database in dependency order; the sort runs twenty times in ci, because one green pass does not distinguish a correct ordering from a lucky one
-- **[shipwatch](https://github.com/tempoloss/shipwatch)** · python — release tags and iso 20022 changes become github issues and telegram messages, on their own
 - **[jot](https://github.com/tempoloss/jot)** · javascript — telegram bot that keeps notes as github issues; anything you send is a note, `/task` promotes one later
 - **[bugchat](https://github.com/tempoloss/bugchat)** · python — a telegram bug chat becomes a plane board; bursts from one author become one task instead of three fragments
 - **[mentor-skill](https://github.com/tempoloss/mentor-skill)** — an agent skill that refuses to let you merge code you can't explain
